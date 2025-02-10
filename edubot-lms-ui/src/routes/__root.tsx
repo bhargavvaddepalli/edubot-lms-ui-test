@@ -14,7 +14,7 @@ export const Route = createRootRouteWithContext<{
 // function RootComponent() {
 //   return (
 //     <>
-//       <div className="tw-p-2 tw-flex tw-gap-2">
+//       <div className="tw-p-2 tw-flex tw-gap-2">  
 //         <Link to="/" className="[&.active]:tw-font-bold">
 //           Home
 //         </Link>{' '}

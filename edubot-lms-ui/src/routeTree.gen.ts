@@ -11,11 +11,23 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SupportTicket4Import } from './routes/SupportTicket4'
+import { Route as SupportTicket3Import } from './routes/SupportTicket3'
 import { Route as IndexImport } from './routes/index'
 import { Route as UsersIndexImport } from './routes/users/index'
 import { Route as UsersAddImport } from './routes/users/add'
 
 // Create/Update Routes
+
+const SupportTicket4Route = SupportTicket4Import.update({
+  path: '/SupportTicket4',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SupportTicket3Route = SupportTicket3Import.update({
+  path: '/SupportTicket3',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -43,6 +55,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/SupportTicket3': {
+      id: '/SupportTicket3'
+      path: '/SupportTicket3'
+      fullPath: '/SupportTicket3'
+      preLoaderRoute: typeof SupportTicket3Import
+      parentRoute: typeof rootRoute
+    }
+    '/SupportTicket4': {
+      id: '/SupportTicket4'
+      path: '/SupportTicket4'
+      fullPath: '/SupportTicket4'
+      preLoaderRoute: typeof SupportTicket4Import
+      parentRoute: typeof rootRoute
+    }
     '/users/add': {
       id: '/users/add'
       path: '/users/add'
@@ -64,6 +90,8 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
+  SupportTicket3Route,
+  SupportTicket4Route,
   UsersAddRoute,
   UsersIndexRoute,
 })
@@ -77,12 +105,20 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/SupportTicket3",
+        "/SupportTicket4",
         "/users/add",
         "/users/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/SupportTicket3": {
+      "filePath": "SupportTicket3.tsx"
+    },
+    "/SupportTicket4": {
+      "filePath": "SupportTicket4.tsx"
     },
     "/users/add": {
       "filePath": "users/add.tsx"
