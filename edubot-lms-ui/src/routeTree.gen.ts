@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as SupportTicket4Import } from './routes/SupportTicket4'
 import { Route as SupportTicket3Import } from './routes/SupportTicket3'
+import { Route as ProfilePageImport } from './routes/ProfilePage'
 import { Route as IndexImport } from './routes/index'
 import { Route as UsersIndexImport } from './routes/users/index'
 import { Route as UsersAddImport } from './routes/users/add'
@@ -26,6 +27,11 @@ const SupportTicket4Route = SupportTicket4Import.update({
 
 const SupportTicket3Route = SupportTicket3Import.update({
   path: '/SupportTicket3',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProfilePageRoute = ProfilePageImport.update({
+  path: '/ProfilePage',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,6 +59,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/ProfilePage': {
+      id: '/ProfilePage'
+      path: '/ProfilePage'
+      fullPath: '/ProfilePage'
+      preLoaderRoute: typeof ProfilePageImport
       parentRoute: typeof rootRoute
     }
     '/SupportTicket3': {
@@ -90,6 +103,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
+  ProfilePageRoute,
   SupportTicket3Route,
   SupportTicket4Route,
   UsersAddRoute,
@@ -105,6 +119,7 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/ProfilePage",
         "/SupportTicket3",
         "/SupportTicket4",
         "/users/add",
@@ -113,6 +128,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/ProfilePage": {
+      "filePath": "ProfilePage.tsx"
     },
     "/SupportTicket3": {
       "filePath": "SupportTicket3.tsx"
