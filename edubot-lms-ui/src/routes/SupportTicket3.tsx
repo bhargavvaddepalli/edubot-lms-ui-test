@@ -111,11 +111,13 @@ export const Route = createFileRoute("/SupportTicket3")({
             <Button variant="outline" className="tw-h-10 tw-px-4 tw-text-sm tw-font-medium tw-border-black-300">
               Mark as Under Progress
             </Button>
-            <div className="tw-flex tw-items-center tw-gap-2 tw-bg-white tw-rounded-md tw-ml-3">
-              <span className="tw-text-sm tw-text-black-500 tw-border-black-300 tw-border-black-700 tw-rounded-md tw-ml-3">Assign to</span>
-              <span className="tw-text-black-400">|</span>
-              <Input className="tw-w-[210px] tw-h-10 tw-text-sm " placeholder="Write the name of person" />
-            </div>
+            <div className="tw-flex tw-items-center tw-gap-2 tw-bg-white tw-rounded-md tw-ml-3 tw-pl-3 tw-py-2">
+  <span className="tw-text-sm tw-text-black-500 tw-border-black-300 tw-border-black-700 tw-rounded-md tw-whitespace-nowrap">
+    Assign to
+  </span>
+  <span className="tw-text-black-400">|</span>
+  <Input className="tw-w-[210px] tw-h-10 tw-text-sm" placeholder="Write the name of person" />
+</div>
           </div>
           <Button variant="outline" className="tw-h-10 tw-px-4 tw-text-sm tw-font-medium   tw-rounded-md ">
             <Plus className="tw-h-4 tw-w-4 tw-mr-2" /> Add Comments
