@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as HiImport } from './routes/hi'
+import { Route as ChangePasswordImport } from './routes/changePassword'
 import { Route as SupportTicket4Import } from './routes/SupportTicket4'
 import { Route as SupportTicket3Import } from './routes/SupportTicket3'
 import { Route as ProfilePageImport } from './routes/ProfilePage'
@@ -23,6 +24,11 @@ import { Route as UsersAddImport } from './routes/users/add'
 
 const HiRoute = HiImport.update({
   path: '/hi',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ChangePasswordRoute = ChangePasswordImport.update({
+  path: '/changePassword',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -88,6 +94,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupportTicket4Import
       parentRoute: typeof rootRoute
     }
+    '/changePassword': {
+      id: '/changePassword'
+      path: '/changePassword'
+      fullPath: '/changePassword'
+      preLoaderRoute: typeof ChangePasswordImport
+      parentRoute: typeof rootRoute
+    }
     '/hi': {
       id: '/hi'
       path: '/hi'
@@ -119,6 +132,7 @@ export const routeTree = rootRoute.addChildren({
   ProfilePageRoute,
   SupportTicket3Route,
   SupportTicket4Route,
+  ChangePasswordRoute,
   HiRoute,
   UsersAddRoute,
   UsersIndexRoute,
@@ -136,6 +150,7 @@ export const routeTree = rootRoute.addChildren({
         "/ProfilePage",
         "/SupportTicket3",
         "/SupportTicket4",
+        "/changePassword",
         "/hi",
         "/users/add",
         "/users/"
@@ -152,6 +167,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/SupportTicket4": {
       "filePath": "SupportTicket4.tsx"
+    },
+    "/changePassword": {
+      "filePath": "changePassword.tsx"
     },
     "/hi": {
       "filePath": "hi.tsx"

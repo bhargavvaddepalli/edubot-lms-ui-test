@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator';
 const BaseEdubotHeader: React.FC = () => {
   return (
     <header className="tw-flex tw-justify-start tw-items-center tw-p-3 tw-bg-secondary tw-border-b tw-text-primary tw-h-16">
-      <img src="/edubot_logo.svg" alt="Logo" className="tw-pl-6" />
+      <img src="/edubot_logo.svg" alt="Logo" className="tw-pl-6 tw-ml-6"  />
       <Separator orientation="vertical" className='tw-w-2 tw-bg-primary tw-mx-6 tw-h-4/5' />
       <div className="tw-text-lg tw-font-medium tw-flex-grow">Hello Kranthi, Welcome to Edubot LMS Platform</div>
       <div className="tw-flex tw-items-center tw-space-x-4">
