@@ -21,10 +21,10 @@ function ProfilePage() {
   }
   
   const [formData, setFormData] = useState({
-    firstName: "Rahul",
-    lastName: "Kumar",
-    email: "Rahulkumar@gmail.com",
-    phone: "+91 7352178373",
+    firstName: "Bhargav",
+    lastName: "Vaddepalli",
+    email: "bhargav@gmail.com",
+    phone: "+91 7032795392",
     languages: "English, Hindi",
     address: "Sirian Overseas Educare Pvt Ltd, Vijayawada, Andhra Pradesh",
     linkedin: "https://www.linkedin.com/feed/",
@@ -143,6 +143,16 @@ function ProfilePage() {
         hasErrors = true;
       }
     });
+    if (formData.phone) {
+      const phoneNumberWithoutCode = formData.phone.replace(/^\+91/, "").trim();
+      if (!/^\d{12}$/.test(phoneNumberWithoutCode)) {
+        newErrors.phone = "phone number 10 required";
+        hasErrors = true;
+      }
+    } else {
+      newErrors.phone = "Phone number is required";
+      hasErrors = true;
+    }
     
     // If there are errors, update the errors state and don't submit
     if (hasErrors) {
@@ -428,25 +438,40 @@ function ProfilePage() {
                   </div>
 
                   <div className="tw-mt-3">
-                    <label className="tw-block tw-text-sm tw-font-medium tw-mb-1">Phone no.</label>
-                    <PhoneInput
-                      country={"in"}
-                      value={formData.phone}
-                      onChange={(phone) => {
-                        setFormData((prev) => ({ ...prev, phone }));
-                        setErrors(prev => ({...prev, phone: null}));
-                        if (!phone) setErrors(prev => ({...prev, phone: "Phone number is required"}));
-                      }}
-                      inputClass={`tw-w-full tw-border tw-rounded-md tw-p-2 !tw-min-w-full tw-text-sm ${
-                        errors.phone ? "tw-border-red-500" : ""
-                      }`}
-                      containerClass="tw-w-full"
-                      buttonClass="tw-border"
-                    />
-                    {errors.phone && (
-                      <p className="tw-text-red-500 tw-text-xs tw-mt-1">{errors.phone}</p>
-                    )}
-                  </div>
+  <label className="tw-block tw-text-sm tw-font-medium tw-mb-1">Phone no.</label>
+  <PhoneInput
+    country={"in"}
+    value={formData.phone}
+    onChange={(phone, country) => {
+      setFormData((prev) => ({ ...prev, phone }));
+      setErrors((prev) => ({ ...prev, phone: null }));
+
+      // Check if phone number is required
+      if (!phone) {
+        setErrors((prev) => ({ ...prev, phone: "Phone number is required" }));
+        return;
+      }
+
+      // Validate for India (+91) - only 10 digits allowed
+      if (country?.dialCode === "91") {
+        const phoneNumberWithoutCode = phone.replace(/^\+91/, "").trim();
+        if (!/^\d{12}$/.test(phoneNumberWithoutCode)) {
+          setErrors((prev) => ({
+            ...prev,
+            phone: "Phone number must be exactly 10 digits for India",
+          }));
+        }
+      }
+    }}
+    inputClass={`tw-w-full tw-border tw-rounded-md tw-p-2 !tw-min-w-full tw-text-sm ${
+      errors.phone ? "tw-border-red-500" : ""
+    }`}
+    containerClass="tw-w-full"
+    buttonClass="tw-border"
+  />
+  {errors.phone && <p className="tw-text-red-500 tw-text-xs tw-mt-1">{errors.phone}</p>}
+</div>
+
 
                   {renderField("Language known", "languages", "text", formData.languages)}
                   
